@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import MonacoEditor from "@monaco-editor/react";
 import { loadPyodide } from "pyodide";
-import TerminalPage from "./TerminalPage"; // Import Terminal Page
+import TerminalPage from "./TerminalPage";
 import "./styles.css";
 
 const App = () => {
@@ -10,12 +10,12 @@ const App = () => {
   const [wordCount, setWordCount] = useState(0);
   const [lineCount, setLineCount] = useState(1);
   const [language, setLanguage] = useState("javascript");
-  const [theme, setTheme] = useState("dark"); // Default theme
-  const [isPyodideReady, setIsPyodideReady] = useState(false); // Track if Pyodide is ready
-  const [loadingMessage, setLoadingMessage] = useState("Pyodide is loading..."); // Track loading status
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false); // Terminal state
+  const [theme, setTheme] = useState("dark");
+  const [isPyodideReady, setIsPyodideReady] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("Pyodide is loading...");
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
-  // Create a ref to store the Pyodide instance
+ 
   const pyodideRef = useRef(null);
 
   // Initialize Pyodide once
