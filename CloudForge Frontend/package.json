@@ -9,10 +9,11 @@
     "@monaco-editor/react": "4.6.0",
     "@pyodide/webpack-plugin": "1.3.3",
     "@uiw/react-codemirror": "4.23.7",
+    "@xterm/xterm": "^5.5.0",
     "axios": "1.7.9",
     "esbuild-wasm": "0.24.2",
-    "pyodide": "0.27.1",
-    "react": "file:",
+    "pyodide": "^0.27.1",
+    "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "skulpt": "1.2.0"
   },

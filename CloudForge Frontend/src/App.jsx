@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import MonacoEditor from "@monaco-editor/react";
 import { loadPyodide } from "pyodide";
+import TerminalPage from "./TerminalPage"; // Import Terminal Page
 import "./styles.css";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
   const [theme, setTheme] = useState("dark"); // Default theme
   const [isPyodideReady, setIsPyodideReady] = useState(false); // Track if Pyodide is ready
   const [loadingMessage, setLoadingMessage] = useState("Pyodide is loading..."); // Track loading status
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false); // Terminal state
 
   // Create a ref to store the Pyodide instance
   const pyodideRef = useRef(null);
@@ -20,7 +22,7 @@ const App = () => {
   useEffect(() => {
     const initializePyodide = async () => {
       try {
-        setLoadingMessage("Pyodide is loading...");
+        setLoadingMessage("IDE is loading...");
         pyodideRef.current = await loadPyodide();
         await pyodideRef.current.loadPackage(["micropip"]);
         setIsPyodideReady(true); // Mark Pyodide as ready
@@ -42,6 +44,11 @@ const App = () => {
   // Handle theme toggle
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  // Handle terminal toggle
+  const toggleTerminal = () => {
+    setIsTerminalOpen((prev) => !prev);
   };
 
   const handleRun = async () => {
@@ -93,10 +100,17 @@ const App = () => {
     }
   };
 
+  if (isTerminalOpen) {
+    return <TerminalPage />;
+  }
+
   return (
     <div className={`app ${theme}`}>
       <header className="app-header">
         <h1>CloudForge</h1>
+        <button className="terminal-button" onClick={toggleTerminal}>
+          Open Terminal
+        </button>
       </header>
       <div className="language-selector">
         <label htmlFor="language">Select Language:</label>
