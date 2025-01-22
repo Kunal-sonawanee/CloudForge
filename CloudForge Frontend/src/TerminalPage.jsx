@@ -18,15 +18,14 @@ const TerminalPage = () => {
     });
     xterm.current.open(terminalRef.current);
 
-    // Simulate a basic Linux terminal
     xterm.current.write("Welcome to the Linux Terminal!\r\n$ ");
     xterm.current.onKey(({ key, domEvent }) => {
       const charCode = domEvent.keyCode || domEvent.which;
 
       if (charCode === 13) {
-        xterm.current.write("\r\n$ "); // New line on Enter
+        xterm.current.write("\r\n$ ");
       } else if (charCode === 8) {
-        // Handle Backspace
+
         const currentText = xterm.current.buffer.active.getLine(
           xterm.current.buffer.active.cursorY
         )?.translateToString(false);
@@ -34,7 +33,7 @@ const TerminalPage = () => {
           xterm.current.write("\b \b");
         }
       } else {
-        xterm.current.write(key); // Append the key to the terminal
+        xterm.current.write(key);
       }
     });
   }, []);
