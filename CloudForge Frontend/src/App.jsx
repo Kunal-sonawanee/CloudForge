@@ -26,7 +26,7 @@ const App = () => {
         pyodideRef.current = await loadPyodide();
         await pyodideRef.current.loadPackage(["micropip"]);
         setIsPyodideReady(true); // Mark Pyodide as ready
-        setLoadingMessage(""); // Clear loading message
+        setLoadingMessage(""); 
       } catch (error) {
         console.error("Failed to load Pyodide:", error);
         setLoadingMessage("Error loading Pyodide.");
@@ -64,12 +64,11 @@ const App = () => {
 
         try {
           // Execute JavaScript code in a safe environment
-          eval(code); // Use eval for JavaScript execution
+          eval(code); 
           result = outputCapture; // Store the captured output
         } catch (error) {
           result = `JavaScript Error: ${error.message}`;
         }
-
         // Restore console.log to its original behavior
         console.log = oldLog;
       } else if (language === "python") {
