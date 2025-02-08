@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import MonacoEditor from "@monaco-editor/react";
 import { loadPyodide } from "pyodide";
 import TerminalPage from "./TerminalPage";
-import "./styles.css";
+import "./styles.css"; 
 
 const App = () => {
   const [code, setCode] = useState("// Write your code here...");
